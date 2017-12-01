@@ -34,15 +34,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-/**
- * FXML Controller class
- *
- * @author samuel
- */
 public class TaskerController implements Initializable {
 
-    
-    
     private String username;
     
     @FXML
@@ -68,7 +61,6 @@ public class TaskerController implements Initializable {
         compruebaPrivilegios();
         menu_add.setGraphic(
         ButtonBuilder.create().text("Add Task").onAction((ActionEvent e) -> {
-            System.out.println("Holiii");
             FXMLLoader createTask = new FXMLLoader(getClass().getResource("/view/FXMLCreateTask.fxml"));
             Pane pane;
             try {
