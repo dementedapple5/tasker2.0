@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="tasker_ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1012.0" styleClass="layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane fx:id="splitPane" dividerPositions="0.5" layoutX="-8.0" layoutY="35.0" prefHeight="529.0" prefWidth="1027.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+        <items>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
+               <children>
+                  <ListView fx:id="list_todo" layoutY="-8.0" prefHeight="527.0" prefWidth="584.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="edt_tarea" mnemonicParsing="false" text="Editar Tarea" />
+                              <MenuItem fx:id="edt_completar" mnemonicParsing="false" text="Completar Tarea" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></ListView>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
+               <children>
+                  <ListView fx:id="list_done" layoutY="14.0" prefHeight="527.0" prefWidth="420.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem fx:id="edt_ocultar" mnemonicParsing="false" text="Ocultar tarea" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></ListView>
+               </children></AnchorPane>
+        </items>
+      </SplitPane>
+      <MenuBar prefHeight="30.0" prefWidth="1012.0" styleClass="button1" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu fx:id="menu_cambiarUser" mnemonicParsing="false" text="Cambiar usuario" />
+          <Menu fx:id="menu_add" mnemonicParsing="false" />
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
