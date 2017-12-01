@@ -24,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ButtonBuilder;
 import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
@@ -61,9 +62,18 @@ public class TaskerController implements Initializable {
     
     @FXML
     private AnchorPane ap_tasker;
+    
+    @FXML
+    public Label label_usuario;
+    
+    @FXML
+    public Label label_viendo;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        label_usuario.setText("Usuario : "+username);
+        label_viendo.setText("Viendo : "+username);
 
         compruebaPrivilegios();
         menu_add.setGraphic(
@@ -160,6 +170,7 @@ public class TaskerController implements Initializable {
             public void handle(ActionEvent event) {
                 MenuItem mItem = (MenuItem) event.getSource();
                 String username2 = mItem.getText();
+                label_viendo.setText("Viendo : "+username2);
                 System.out.println(username);
                 System.out.println(username2);
                 if (username2.equals(username)) {
