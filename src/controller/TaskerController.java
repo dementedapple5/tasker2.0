@@ -5,35 +5,27 @@ import model.TaskCellFactory;
 import model.Connector;
 import model.Task;
 import model.User;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.ButtonBuilder;
-import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import javafx.scene.control.ListView;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 
 public class TaskerController implements Initializable {
 
@@ -43,10 +35,7 @@ public class TaskerController implements Initializable {
     private ListView list_todo, list_done;
     
     @FXML
-    private Menu menu_cambiarUser, menu_add;
-    
-    @FXML
-    private SplitPane sp_tasker;
+    private Menu menu_cambiarUser;
     
     @FXML
     private MenuItem edt_tarea, edt_completar, edt_ocultar;
@@ -57,10 +46,11 @@ public class TaskerController implements Initializable {
     private AnchorPane ap_tasker;
     
     @FXML
-    public Label label_usuario;
+    private Label label_usuario, label_viendo;
     
     @FXML
-    public Label label_viendo;
+    private Button btn_add;
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -68,27 +58,9 @@ public class TaskerController implements Initializable {
         label_usuario.setText("Usuario : "+username);
         label_viendo.setText("Viendo : "+username);
 
-        compruebaPrivilegios();
-        menu_add.setGraphic(
-        ButtonBuilder.create().text("Add Task").onAction((ActionEvent e) -> {
-            FXMLLoader createTask = new FXMLLoader(getClass().getResource("/view/FXMLCreateTask.fxml"));
-            Pane pane;
-            try {
-                pane = (Pane)createTask.load();
-                Scene createTaskScene = new Scene(pane);
-                Stage createTaskStage = new Stage();
-                createTaskStage.setScene(createTaskScene);
-                createTaskStage.setTitle("Add Task");
-                createTaskStage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(TaskerController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }).build()
-        );
-        
+        compruebaPrivilegios();    
 
         try {
-
             rellenarMenu();
         } catch (IOException ex) {
             Logger.getLogger(TaskerController.class.getName()).log(Level.SEVERE, null, ex);
@@ -108,6 +80,27 @@ public class TaskerController implements Initializable {
         edt_ocultar.setOnAction(prueba());
 
     }
+    
+    @FXML
+    public void addTask(){
+        Stage taskerStage = (Stage) ap_tasker.getScene().getWindow();
+        CreateTaskController ctc = new CreateTaskController(username,getPrivileges());
+        FXMLLoader createTask = new FXMLLoader(getClass().getResource("/view/FXMLCreateTask.fxml"));
+        createTask.setController(ctc);
+        Pane pane;
+        try {
+            pane = (Pane)createTask.load();
+            Scene createTaskScene = new Scene(pane);
+            Stage createTaskStage = new Stage();
+            createTaskStage.setScene(createTaskScene);
+            createTaskStage.setTitle("Add Task");
+            createTaskStage.show();
+            taskerStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TaskerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 
     public void compruebaPrivilegios() {
         Connector conn = new Connector();
@@ -115,16 +108,23 @@ public class TaskerController implements Initializable {
 
     }
 
-    @FXML
-    private void changeEdit(ActionEvent event) throws IOException {
-
-        System.out.println("changeEdit");
-
+    public Boolean getPrivileges() {
+        return privileges;
     }
 
+    @FXML
+    private void changeEdit(ActionEvent event) throws IOException {
+        System.out.println("changeEdit");
+    }
+    
     public void setUser(String username) {
         this.username = username;
     }
+
+    public String getUsername() {
+        return username;
+    }
+    
 
     public void getTasks(String usernameTask) throws IOException {
         list_done.getItems().clear();
@@ -145,10 +145,8 @@ public class TaskerController implements Initializable {
         Connector conn = new Connector();
 
         for (User user : conn.obtenerUsuarios()) {
-
             MenuItem item = new MenuItem(user.getUsername());
             item.setOnAction(changeUser());
-
             menu_cambiarUser.getItems().add(item);
         }
 
@@ -166,13 +164,12 @@ public class TaskerController implements Initializable {
                 System.out.println(username);
                 System.out.println(username2);
                 if (username2.equals(username)) {
-
-                    menu_add.setDisable(false);
+                    btn_add.setDisable(false);
                     edt_tarea.setDisable(false);
                     edt_completar.setDisable(false);
                     edt_ocultar.setDisable(false);
                 } else if (!username2.equals(username) || !privileges) {
-                    menu_add.setDisable(true);
+                    btn_add.setDisable(true);
                     edt_tarea.setDisable(true);
                     edt_completar.setDisable(true);
                     edt_ocultar.setDisable(true);

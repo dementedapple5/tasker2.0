@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="451.0" prefWidth="663.0" styleClass="layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateTaskController">
+<AnchorPane id="AnchorPane" fx:id="create_ap" prefHeight="451.0" prefWidth="663.0" styleClass="layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField id="name_tf" fx:id="title_tf" layoutX="15.0" layoutY="111.0" prefHeight="26.0" prefWidth="623.0" promptText="Title" styleClass="input" stylesheets="@../css/style.css">
          <font>
@@ -55,7 +55,7 @@
             <String fx:value="button1" />
             <String fx:value="choicebox" />
          </styleClass></ChoiceBox>
-      <Label layoutX="337.0" layoutY="294.0" text="Attendant" textFill="WHITE">
+      <Label fx:id="attendant_lbl" layoutX="337.0" layoutY="294.0" text="Attendant" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
@@ -65,7 +65,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button layoutX="-123.0" layoutY="-101.0" mnemonicParsing="false" styleClass="back_button" stylesheets="@../css/style.css" text="Button">
+      <Button fx:id="back_btn" layoutX="-123.0" layoutY="-101.0" mnemonicParsing="false" styleClass="back_button" stylesheets="@../css/style.css" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

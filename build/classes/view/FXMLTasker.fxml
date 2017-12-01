@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -7,16 +9,17 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1012.0" styleClass="layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ap_tasker" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1012.0" styleClass="layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="30.0" prefWidth="1012.0" styleClass="menu-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <MenuBar layoutX="24.0" prefHeight="30.0" prefWidth="484.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="0.0">
               <menus>
                 <Menu fx:id="menu_cambiarUser" mnemonicParsing="false" style="-fx-text-fill: white;" text="Cambiar usuario" />
-                <Menu fx:id="menu_add" mnemonicParsing="false" />
               </menus>
             </MenuBar>
             <Label fx:id="label_usuario" alignment="CENTER" contentDisplay="CENTER" layoutX="613.0" layoutY="-1.0" prefHeight="30.0" prefWidth="193.0" text="Usuario: " AnchorPane.topAnchor="0.0" />
@@ -27,7 +30,7 @@
         <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
                <children>
-                  <ListView fx:id="list_todo" layoutY="30.0" prefHeight="497.0" prefWidth="502.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                  <ListView fx:id="list_todo" layoutY="40.0" prefHeight="487.0" prefWidth="502.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
                      <contextMenu>
                         <ContextMenu>
                           <items>
@@ -36,7 +39,18 @@
                           </items>
                         </ContextMenu>
                      </contextMenu></ListView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS TO DO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS TO DO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Button fx:id="btn_add" layoutX="452.0" layoutY="3.0" maxHeight="44.0" maxWidth="44.0" mnemonicParsing="false" onAction="#addTask" prefHeight="44.0" prefWidth="44.0" styleClass="btnAdd" stylesheets="@../css/style.css" text="+" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                     <effect>
+                        <DropShadow color="#363636af" height="2.0" offsetX="2.0" offsetY="1.0" radius="0.5" width="2.0" />
+                     </effect>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
@@ -49,7 +63,7 @@
                           </items>
                         </ContextMenu>
                      </contextMenu></ListView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS DONE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS DONE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>

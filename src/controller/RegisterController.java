@@ -67,14 +67,14 @@ public class RegisterController implements Initializable {
     public void goBack(ActionEvent e) throws IOException{
         Stage stageRegister = (Stage) ap_register.getScene().getWindow();
         
-        FXMLLoader createTask = new FXMLLoader(getClass().getResource("/view/FXMLLogin.fxml"));
-        Pane pane = (Pane)createTask.load();
-        Scene createTaskScene = new Scene(pane);
-        Stage createTaskStage = new Stage();
-        createTaskStage.setScene(createTaskScene);
-        createTaskStage.setTitle("Login");
+        FXMLLoader login = new FXMLLoader(getClass().getResource("/view/FXMLLogin.fxml"));
+        Pane pane = (Pane)login.load();
+        Scene loginScene = new Scene(pane);
+        Stage loginStage = new Stage();
+        loginStage.setScene(loginScene);
+        loginStage.setTitle("Login");
         stageRegister.close();
-        createTaskStage.show();
+        loginStage.show();
     }
     
     public void registerUser() throws IOException{
