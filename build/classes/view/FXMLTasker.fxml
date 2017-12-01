@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -8,13 +9,25 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="tasker_ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1012.0" styleClass="layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="557.0" prefWidth="1012.0" styleClass="layout" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <SplitPane fx:id="splitPane" dividerPositions="0.5" layoutX="-8.0" layoutY="35.0" prefHeight="529.0" prefWidth="1027.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+      <AnchorPane prefHeight="30.0" prefWidth="1012.0" styleClass="menu-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar layoutX="24.0" prefHeight="30.0" prefWidth="484.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="0.0">
+              <menus>
+                <Menu fx:id="menu_cambiarUser" mnemonicParsing="false" style="-fx-text-fill: white;" text="Cambiar usuario" />
+                <Menu fx:id="menu_add" mnemonicParsing="false" />
+              </menus>
+            </MenuBar>
+            <Label fx:id="label_usuario" alignment="CENTER" contentDisplay="CENTER" layoutX="613.0" layoutY="-1.0" prefHeight="30.0" prefWidth="193.0" text="Usuario: " AnchorPane.topAnchor="0.0" />
+            <Label fx:id="label_viendo" layoutX="763.0" layoutY="1.0" prefHeight="30.0" prefWidth="193.0" text="Viendo:" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+      <SplitPane fx:id="splitPane" dividerPositions="0.5" layoutX="-8.0" layoutY="70.0" prefHeight="529.0" prefWidth="1012.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
         <items>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
                <children>
-                  <ListView fx:id="list_todo" layoutY="-8.0" prefHeight="527.0" prefWidth="584.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ListView fx:id="list_todo" layoutY="30.0" prefHeight="497.0" prefWidth="502.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                      <contextMenu>
                         <ContextMenu>
                           <items>
@@ -23,11 +36,12 @@
                           </items>
                         </ContextMenu>
                      </contextMenu></ListView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS TO DO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
                <children>
-                  <ListView fx:id="list_done" layoutY="14.0" prefHeight="527.0" prefWidth="420.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <ListView fx:id="list_done" layoutY="30.0" prefHeight="497.0" prefWidth="502.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
                      <contextMenu>
                         <ContextMenu>
                           <items>
@@ -35,14 +49,9 @@
                           </items>
                         </ContextMenu>
                      </contextMenu></ListView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS DONE" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                </children></AnchorPane>
         </items>
       </SplitPane>
-      <MenuBar prefHeight="30.0" prefWidth="1012.0" styleClass="button1" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu fx:id="menu_cambiarUser" mnemonicParsing="false" text="Cambiar usuario" />
-          <Menu fx:id="menu_add" mnemonicParsing="false" />
-        </menus>
-      </MenuBar>
    </children>
 </AnchorPane>
