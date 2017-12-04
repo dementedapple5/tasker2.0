@@ -21,7 +21,7 @@ public class Tasker extends Application{
         
         stage.setScene(scene);
         stage.show();
-        stage.setTitle("Register");
+        stage.setTitle("Login");
     }
 
     public static void main(String[] args) {

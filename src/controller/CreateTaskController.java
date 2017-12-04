@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,6 +36,9 @@ public class CreateTaskController implements Initializable {
     
     @FXML
     private ChoiceBox<String> choice_prior, choice_user;
+    
+    @FXML
+    private Button back_btn, create_btn;
     
     @FXML
     private TextField title_tf, comment_tf, description_tf;
@@ -103,19 +107,6 @@ public class CreateTaskController implements Initializable {
         }
         if (checkTask()){
             if (!conn.addTask(title, comment, desc, priorInt, user)){
-                
-                Stage stageRegister = (Stage) create_ap.getScene().getWindow();
-                TaskerController controler = new TaskerController();
-                controler.setUser(username);
-                FXMLLoader task = new FXMLLoader(getClass().getResource("/view/FXMLTasker.fxml"));
-                task.setController(controler);
-                Pane pane = (Pane)task.load();
-                Scene taskScene = new Scene(pane);
-                Stage taskStage = new Stage();
-                taskStage.setScene(taskScene);
-                taskStage.setTitle("Tasks");
-                stageRegister.close();
-                taskStage.show();
                 JOptionPane.showMessageDialog(null, "Tarea añadida con exito");
                 
             }else{
@@ -135,7 +126,32 @@ public class CreateTaskController implements Initializable {
         else return true;
     }
     
-
+    public void goBack() throws IOException{
+        Stage stageCreate = (Stage) create_ap.getScene().getWindow();
+        stageCreate.close();
+    }
     
-    
+    @FXML
+    public void handdleActionButton(ActionEvent e) throws IOException{
+        if (e.getSource()==back_btn){
+            goBack();
+        }else if (e.getSource()==create_btn){
+            sendData();
+        }
+  
+    }
 }
+
+/*
+Stage stageRegister = (Stage) create_ap.getScene().getWindow();
+                TaskerController controler = new TaskerController();
+                controler.setUser(username);
+                FXMLLoader task = new FXMLLoader(getClass().getResource("/view/FXMLTasker.fxml"));
+                task.setController(controler);
+                Pane pane = (Pane)task.load();
+                Scene taskScene = new Scene(pane);
+                Stage taskStage = new Stage();
+                taskStage.setScene(taskScene);
+                taskStage.setTitle("Tasks");
+                stageRegister.close();
+                taskStage.show();*/

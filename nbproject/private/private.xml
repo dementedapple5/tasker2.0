@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/tasker2.0/src/controller/TaskerController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/tasker2.0/src/model/Connector.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/tasker2.0/src/view/FXMLEdit.fxml</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/tasker2.0/src/controller/CreateTaskController.java</file>
-            <file>file:/C:/Users/samuel/Documents/NetBeansProjects/tasker2.0/src/controller/EditTaskController.java</file>
+            <file>file:/C:/Users/Dani/Documents/NetBeansProjects/tasker2.0/src/controller/CreateTaskController.java</file>
+            <file>file:/C:/Users/Dani/Documents/NetBeansProjects/tasker2.0/src/model/Connector.java</file>
+            <file>file:/C:/Users/Dani/Documents/NetBeansProjects/tasker2.0/src/view/Tasker.java</file>
         </group>
     </open-files>
 </project-private>

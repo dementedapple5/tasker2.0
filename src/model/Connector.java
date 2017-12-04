@@ -46,8 +46,7 @@ public class Connector {
 
                     try {
                             HttpEntity entity1 = response1.getEntity();
-                            String json = IOUtils.toString(entity1.getContent(), "UTF8");        
-                            Gson gson = new Gson(); // Or use new GsonBuilder().create();
+                            String json = IOUtils.toString(entity1.getContent(), "UTF8");
                             Type collectionType = new TypeToken<Collection<UserPojo>>(){}.getType();
                             List<UserPojo> usuarios = (List<UserPojo>) new Gson()
                                             .fromJson( json , collectionType);
@@ -73,7 +72,7 @@ public class Connector {
 	public boolean registerUser(String name, String username, String password) throws IOException {
                 
             HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/create_user.php");
-            List<NameValuePair> user = new ArrayList<NameValuePair>();
+            List<NameValuePair> user = new ArrayList<>();
             user.add(new BasicNameValuePair("username",username));
             user.add(new BasicNameValuePair("pass",password));
             user.add(new BasicNameValuePair("name",name));
@@ -104,7 +103,7 @@ public class Connector {
             Task tarea = new Task(title, username, comment, desc, prior);
             boolean found = false;
 
-            List<NameValuePair> task = new ArrayList<NameValuePair>();
+            List<NameValuePair> task = new ArrayList<>();
             task.add(new BasicNameValuePair("titulo",tarea.getTitle()));
             task.add(new BasicNameValuePair("coments",tarea.getComment()));
             task.add(new BasicNameValuePair("contenido",tarea.getDescription()));
@@ -115,19 +114,20 @@ public class Connector {
             task.add(new BasicNameValuePair("fecha",tarea.getCreationDate()));
             System.out.println(task);
             try {
-                    for (Task t: obtenerTareas(tarea.getAttendant())) {
-                        if (t.getTitle().equalsIgnoreCase(tarea.getTitle())) found = true;
-                    }
+                for (Task t: obtenerTareas(tarea.getAttendant())) {
+                    if (t.getTitle().equalsIgnoreCase(tarea.getTitle())) found = true;
+                }
 
-                    if(!found) {
-                            httpPost.setEntity(new UrlEncodedFormEntity(task));
-                            CloseableHttpResponse response = httpclient.execute(httpPost);
-                            StatusLine status = response.getStatusLine();
-                            System.out.println(status);
-                    }
+                if(!found) {
+                    httpPost.setEntity(new UrlEncodedFormEntity(task));
+                    CloseableHttpResponse response = httpclient.execute(httpPost);
+                    StatusLine status = response.getStatusLine();
+                    System.out.println(status);
+                }
             } catch (IOException e) {
                     System.out.println("Fallo de Conexion");
             }
+            
 
             return found;
 	}
@@ -138,22 +138,18 @@ public class Connector {
 		HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/check_user.php");
 		boolean found = false;
 		try {
-			List<NameValuePair> user = new ArrayList<NameValuePair>();
-			user.add(new BasicNameValuePair("username",username));
-                        user.add(new BasicNameValuePair("pass",pass));
-                        httpPost.setEntity(new UrlEncodedFormEntity(user));
-		    
-                        CloseableHttpResponse response1 = httpclient.execute(httpPost);
-			HttpEntity entity1 = response1.getEntity();
-			String json = IOUtils.toString(entity1.getContent(), "UTF8");
-                        System.out.println("json: "+json);
-			if (json.equals("1")) {
-				found=true;
-			}else {
-				found = false;
-			}
+                    List<NameValuePair> user = new ArrayList<>();
+                    user.add(new BasicNameValuePair("username",username));
+                    user.add(new BasicNameValuePair("pass",pass));
+                    httpPost.setEntity(new UrlEncodedFormEntity(user));
+
+                    CloseableHttpResponse response1 = httpclient.execute(httpPost);
+                    HttpEntity entity1 = response1.getEntity();
+                    String json = IOUtils.toString(entity1.getContent(), "UTF8");
+                    System.out.println("json: "+json);
+                    found = json.equals("1");
 		} catch (IOException e) {
-			System.out.println(e.getMessage());
+                    System.out.println(e.getMessage());
 		}
 		
 		
@@ -161,30 +157,32 @@ public class Connector {
 	}
 
 	public List<Task> obtenerTareas(String encargado) throws ClientProtocolException, IOException{
-
-
+                HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/select_tasks.php");
+                
 		List<Task> listTareas = new ArrayList<>();
 
-		HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/select_tasks.php");
-		
-		List<NameValuePair> params = new ArrayList<NameValuePair>();
-	    params.add(new BasicNameValuePair("encargado", encargado));
-	    httpPost.setEntity(new UrlEncodedFormEntity(params));
-	 
-	    CloseableHttpResponse response = httpclient.execute(httpPost);
-	    HttpEntity entity1 = response.getEntity();
-	    String json2 = IOUtils.toString(entity1.getContent(), "UTF8");
-	    
-	    Gson gson1 = new Gson(); // Or use new GsonBuilder().create();
-		Type collectionType = new TypeToken<Collection<TaskPojo>>(){}.getType();
-		List<TaskPojo> tareas = (List<TaskPojo>) new Gson().fromJson( json2 , collectionType);
-		
-		
-		for(TaskPojo tarea: tareas) {
-			listTareas.add(new Task(tarea.getTitulo(), tarea.getEncargado(), tarea.getComents(), tarea.getContenido(), Integer.parseInt(tarea.getPrioridad()), tarea.getFecha(), tarea.getEstado(), tarea.getVisible()));
-		}
-	    
-	    response.close();
+		List<NameValuePair> params = new ArrayList<>();
+                params.add(new BasicNameValuePair("encargado", encargado));
+                
+                
+                httpPost.setEntity(new UrlEncodedFormEntity(params));
+                CloseableHttpResponse response = httpclient.execute(httpPost);
+                    
+                HttpEntity entity1 = response.getEntity();
+                String json2 = IOUtils.toString(entity1.getContent(), "UTF8");
+                Type collectionType = new TypeToken<Collection<TaskPojo>>(){}.getType();
+                List<TaskPojo> tareas = (List<TaskPojo>) new Gson().fromJson( json2 , collectionType);
+
+                if (response!=null){
+                   response.close();
+                }
+
+                tareas.forEach((tarea) -> {
+                    listTareas.add(new Task(tarea.getTitulo(), tarea.getEncargado(), tarea.getComents(), tarea.getContenido(), Integer.parseInt(tarea.getPrioridad()), tarea.getFecha(), tarea.getEstado(), tarea.getVisible()));
+                });
+
+                EntityUtils.consume(entity1);
+                 
 
 		return listTareas;
 	}
@@ -193,7 +191,7 @@ public class Connector {
             HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/task_done.php");
             boolean finded = false;
             try {
-                List<NameValuePair> user = new ArrayList<NameValuePair>();
+                List<NameValuePair> user = new ArrayList<>();
                 user.add(new BasicNameValuePair("encargado", username));
                 user.add(new BasicNameValuePair("titulo", title));
                 user.add(new BasicNameValuePair("fecha", date));
@@ -210,18 +208,14 @@ public class Connector {
         HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/check_user.php");
         boolean finded = false;
         try {
-            List<NameValuePair> user = new ArrayList<NameValuePair>();
+            List<NameValuePair> user = new ArrayList<>();
             user.add(new BasicNameValuePair("username", username));
             httpPost.setEntity(new UrlEncodedFormEntity(user));
 
             HttpResponse response1 = HttpClients.createDefault().execute(httpPost);
             HttpEntity entity1 = response1.getEntity();
             String json = IOUtils.toString(entity1.getContent(), "UTF8");
-            if (json.equals("1")) {
-                finded = true;
-            } else {
-                finded = false;
-            }
+            finded = json.equals("1");
 
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -234,7 +228,7 @@ public class Connector {
         HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/task_update.php");
             boolean finded = false;
             try {
-                List<NameValuePair> usuario = new ArrayList<NameValuePair>();
+                List<NameValuePair> usuario = new ArrayList<>();
                 usuario.add(new BasicNameValuePair("encargado", user));
                 usuario.add(new BasicNameValuePair("titulo", title));
                 usuario.add(new BasicNameValuePair("coments", comment));

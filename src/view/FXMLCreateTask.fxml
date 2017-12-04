@@ -21,7 +21,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="btn_create" layoutX="22.0" layoutY="390.0" mnemonicParsing="false" onAction="#sendData" prefHeight="41.0" prefWidth="623.0" styleClass="button1" stylesheets="@../css/style.css" text="ADD" textFill="WHITE">
+      <Button fx:id="create_btn" layoutX="22.0" layoutY="390.0" mnemonicParsing="false" onAction="#handdleActionButton" prefHeight="41.0" prefWidth="623.0" styleClass="button1" stylesheets="@../css/style.css" text="ADD" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
@@ -65,7 +65,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="back_btn" layoutX="-123.0" layoutY="-101.0" mnemonicParsing="false" styleClass="back_button" stylesheets="@../css/style.css" text="Button">
+      <Button fx:id="back_btn" layoutX="-123.0" layoutY="-101.0" mnemonicParsing="false" onAction="#handdleActionButton" styleClass="back_button" stylesheets="@../css/style.css" text="Button">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
