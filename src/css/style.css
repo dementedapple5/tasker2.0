@@ -44,5 +44,19 @@
     -fx-max-height: 36px;
 }
 
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: #575B70;
+    -fx-text-fill: white;
+}
 
+.list-cell:odd {
+    -fx-cell-hover-color: #575B70;
+    -fx-background-color: white;
+    -fx-text-fill: white;
+}
+
+.list-cell:filled:hover {
+    -fx-cell-hover-color: #575B70;
+    -fx-text-fill: white;
+}
 
