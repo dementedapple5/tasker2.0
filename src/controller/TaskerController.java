@@ -116,6 +116,7 @@ public class TaskerController implements Initializable {
             pane = (Pane)createTask.load();
             Scene createTaskScene = new Scene(pane);
             Stage createTaskStage = new Stage();
+             createTaskStage.setResizable(false);
             createTaskStage.setScene(createTaskScene);
             createTaskStage.setTitle("Add Task");
             createTaskStage.show();

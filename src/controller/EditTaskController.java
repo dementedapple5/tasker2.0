@@ -89,13 +89,14 @@ public class EditTaskController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb){
+                
         title_tf.setText(oldTitle);
         comment_tf.setText(oldComent);
         description_tf.setText(oldDescription);
         
         
         choice_prior.setItems(priorList);
-        choice_prior.getSelectionModel().select(oldPrioriy);
+        choice_prior.getSelectionModel().select(oldPrioriy-1);
         
         try {
             userList = FXCollections.observableArrayList(getUsersName());
@@ -115,7 +116,7 @@ public class EditTaskController implements Initializable {
     public void sendData() throws IOException{
         
        
-          String prior = choice_prior.getValue();
+        String prior = choice_prior.getValue();
         String user;
         if(isAdmin){
               user = choice_user.getValue();
