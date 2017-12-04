@@ -229,6 +229,28 @@ public class Connector {
 
         return finded;
     }
+
+    public boolean updateTarea(String user, String title, String comment, String priorInt, String desc, String oldUsername, String oldTitulo, String oldDate) {
+        HttpPost httpPost = new HttpPost("https://centraldemascotas.com/aplicaciones/tasker/task_update.php");
+            boolean finded = false;
+            try {
+                List<NameValuePair> usuario = new ArrayList<NameValuePair>();
+                usuario.add(new BasicNameValuePair("encargado", user));
+                usuario.add(new BasicNameValuePair("titulo", title));
+                usuario.add(new BasicNameValuePair("coments", comment));
+                usuario.add(new BasicNameValuePair("prioridad", priorInt));
+                usuario.add(new BasicNameValuePair("contenido", desc));
+                usuario.add(new BasicNameValuePair("encargadoBefore", oldUsername));
+                usuario.add(new BasicNameValuePair("tituloBefore", oldTitulo));
+                usuario.add(new BasicNameValuePair("fechaBefore", oldDate));
+                httpPost.setEntity(new UrlEncodedFormEntity(usuario));
+                HttpClients.createDefault().execute(httpPost);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+
+            return finded;
+    }
 	
 	
 	

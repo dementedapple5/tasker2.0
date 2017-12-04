@@ -6,15 +6,15 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<fx:root prefHeight="156.0" prefWidth="476.0" style="-fx-padding: 2px; -fx-background-insets: 0px, 2px;" styleClass="layout" stylesheets="@../css/style.css" type="javafx.scene.control.ListCell" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="156.0" prefWidth="476.0" style="-fx-padding: 2px; -fx-background-insets: 0px, 2px;" type="javafx.scene.control.ListCell" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <graphic>
-      <AnchorPane prefHeight="150.0" prefWidth="582.0" styleClass="layout" stylesheets="@../css/style.css">
+      <AnchorPane prefHeight="150.0" prefWidth="582.0">
          <children>
-            <Label fx:id="titleLabel" layoutX="3.0" layoutY="-2.0" prefHeight="26.0" prefWidth="465.0" style="-fx-font-size: 18; -fx-font-weight: bold;" styleClass="title" stylesheets="@../css/style.css" text="Título" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0" />
+            <Label fx:id="titleLabel" layoutX="3.0" layoutY="-2.0" prefHeight="26.0" prefWidth="465.0" style="-fx-font-size: 18; -fx-font-weight: bold;" text="Título" AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="3.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="-2.0" />
             <Separator layoutX="-2.0" layoutY="26.0" prefHeight="1.0" prefWidth="486.0" style="-fx-background-color: #ffff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Label fx:id="commentLabel" layoutY="31.0" prefHeight="27.0" prefWidth="195.0" style="-fx-font-size: 15;" styleClass="title" stylesheets="@../css/style.css" text="Comentario" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0" />
-            <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutY="61.0" prefHeight="89.0" prefWidth="490.0" style="-fx-font-size: 14;" styleClass="title" stylesheets="@../css/style.css" text="Descripcion" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <Label fx:id="dateLabel" layoutX="359.0" layoutY="119.0" prefHeight="31.0" prefWidth="106.0" style="-fx-font-size: 14;" styleClass="title" stylesheets="@../css/style.css" text="fecha" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="7.0" />
+            <Label fx:id="commentLabel" layoutY="31.0" prefHeight="27.0" prefWidth="195.0" style="-fx-font-size: 15;" text="Comentario" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0" />
+            <Label fx:id="descriptionLabel" alignment="TOP_LEFT" layoutY="61.0" prefHeight="89.0" prefWidth="490.0" style="-fx-font-size: 14;" text="Descripcion" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="dateLabel" layoutX="359.0" layoutY="119.0" prefHeight="31.0" prefWidth="106.0" style="-fx-font-size: 14;" text="fecha" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="7.0" />
          </children>
       </AnchorPane>
    </graphic>

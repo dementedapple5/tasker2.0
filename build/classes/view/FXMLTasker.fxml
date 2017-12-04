@@ -17,7 +17,7 @@
    <children>
       <AnchorPane prefHeight="30.0" prefWidth="1012.0" styleClass="menu-bar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <MenuBar layoutX="24.0" prefHeight="30.0" prefWidth="484.0" AnchorPane.leftAnchor="16.0" AnchorPane.topAnchor="0.0">
+            <MenuBar layoutX="24.0" prefHeight="30.0" prefWidth="484.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
               <menus>
                 <Menu fx:id="menu_cambiarUser" mnemonicParsing="false" style="-fx-text-fill: white;" text="Cambiar usuario" />
               </menus>
@@ -26,21 +26,21 @@
             <Label fx:id="label_viendo" layoutX="763.0" layoutY="1.0" prefHeight="30.0" prefWidth="193.0" text="Viendo:" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children>
       </AnchorPane>
-      <SplitPane fx:id="splitPane" dividerPositions="0.5" layoutX="-8.0" layoutY="70.0" prefHeight="529.0" prefWidth="1012.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
+      <SplitPane fx:id="splitPane" dividerPositions="0.5" layoutX="-8.0" layoutY="70.0" prefHeight="529.0" prefWidth="1012.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="28.0">
         <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ListView fx:id="list_todo" layoutY="40.0" prefHeight="487.0" prefWidth="502.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+                  <ListView fx:id="list_todo" layoutY="40.0" prefHeight="487.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
                      <contextMenu>
                         <ContextMenu>
                           <items>
-                            <MenuItem fx:id="edt_tarea" mnemonicParsing="false" text="Editar Tarea" />
+                            <MenuItem fx:id="edt_tarea" mnemonicParsing="false" onAction="#editTask" text="Editar Tarea" />
                               <MenuItem fx:id="edt_completar" mnemonicParsing="false" text="Completar Tarea" />
                           </items>
                         </ContextMenu>
                      </contextMenu></ListView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS TO DO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-                  <Button fx:id="btn_add" layoutX="452.0" layoutY="3.0" maxHeight="44.0" maxWidth="44.0" mnemonicParsing="false" onAction="#addTask" prefHeight="44.0" prefWidth="44.0" styleClass="btnAdd" stylesheets="@../css/style.css" text="+" textFill="WHITE">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="502.0" style="-fx-font-size: 18; -fx-border-width: 0 0 2 0; -fx-border-color: white;" styleClass="title" stylesheets="@../css/style.css" text="TASKS TO DO" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Button fx:id="btn_add" layoutX="452.0" layoutY="3.0" maxHeight="44.0" maxWidth="44.0" mnemonicParsing="false" onAction="#addTask" prefHeight="44.0" prefWidth="44.0" styleClass="btnAdd" stylesheets="@../css/style.css" text="+" textFill="WHITE" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -53,9 +53,9 @@
                   </Button>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="layout" stylesheets="@../css/style.css">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <ListView fx:id="list_done" layoutY="30.0" prefHeight="497.0" prefWidth="502.0" styleClass="layout" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+                  <ListView fx:id="list_done" layoutY="30.0" prefHeight="497.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
                      <contextMenu>
                         <ContextMenu>
                           <items>

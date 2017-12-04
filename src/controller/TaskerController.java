@@ -75,7 +75,7 @@ public class TaskerController implements Initializable {
             Logger.getLogger(TaskerController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        edt_tarea.setOnAction(editarTarea());
+        
         edt_completar.setOnAction(completarTarea());
         edt_ocultar.setOnAction(prueba());
 
@@ -86,6 +86,30 @@ public class TaskerController implements Initializable {
         Stage taskerStage = (Stage) ap_tasker.getScene().getWindow();
         CreateTaskController ctc = new CreateTaskController(username,getPrivileges());
         FXMLLoader createTask = new FXMLLoader(getClass().getResource("/view/FXMLCreateTask.fxml"));
+        createTask.setController(ctc);
+        Pane pane;
+        try {
+            pane = (Pane)createTask.load();
+            Scene createTaskScene = new Scene(pane);
+            Stage createTaskStage = new Stage();
+            createTaskStage.setScene(createTaskScene);
+            createTaskStage.setTitle("Add Task");
+            createTaskStage.show();
+            taskerStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TaskerController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @FXML
+    public void editTask(){
+        Stage taskerStage = (Stage) ap_tasker.getScene().getWindow();
+        Task tarea = (Task) list_todo.getSelectionModel().getSelectedItem();
+        String encargado = tarea.getAttendant();
+        String titulo = tarea.getTitle();
+        String fecha = tarea.getCreationDate();
+        EditTaskController ctc = new EditTaskController(encargado,getPrivileges(),titulo,tarea.getComment(),tarea.getDescription(),tarea.getPriority(),tarea.getCreationDate());
+        FXMLLoader createTask = new FXMLLoader(getClass().getResource("/view/FXMLEdit.fxml"));
         createTask.setController(ctc);
         Pane pane;
         try {

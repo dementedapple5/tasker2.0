@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import model.Connector;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +14,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Properties;
+import java.util.prefs.Preferences;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -42,20 +48,23 @@ public class DocumentController implements Initializable {
         this.prevStage = stage;
     }
 
-    
-    public void login(ActionEvent e) throws IOException{
+    public void login(ActionEvent e) throws IOException {
         Stage stageRegister = (Stage) ap_login.getScene().getWindow();
         Connector conn = new Connector();
-        
-        if (conn.checkUser(et_username.getText(), et_password.getText())){
-            
+
+        if (conn.checkUser(et_username.getText(), et_password.getText())) {
+
+            Preferences prefs = Preferences.userNodeForPackage(DocumentController.class);
+            prefs.put("username", et_username.getText());
+            prefs.put("password", et_password.getText());
+
             TaskerController controler = new TaskerController();
             controler.setUser(et_username.getText());
             FXMLLoader task = new FXMLLoader(getClass().getResource("/view/FXMLTasker.fxml"));
-            
+
             task.setController(controler);
-            Pane pane = (Pane)task.load();
-            
+            Pane pane = (Pane) task.load();
+
             Scene taskScene = new Scene(pane);
             Stage taskStage = new Stage();
             taskStage.setScene(taskScene);
@@ -64,14 +73,14 @@ public class DocumentController implements Initializable {
             taskStage.show();
         } else {
             JOptionPane.showMessageDialog(null, "Usuario o Contraseña incorrecta");
-        }  
+        }
     }
-    
-    public void register(ActionEvent e) throws IOException{
+
+    public void register(ActionEvent e) throws IOException {
         Stage stageRegister = (Stage) ap_login.getScene().getWindow();
-        
+
         FXMLLoader createTask = new FXMLLoader(getClass().getResource("/view/FXMLRegister.fxml"));
-        Pane pane = (Pane)createTask.load();
+        Pane pane = (Pane) createTask.load();
         Scene createTaskScene = new Scene(pane);
         Stage createTaskStage = new Stage();
         createTaskStage.setScene(createTaskScene);
@@ -79,8 +88,7 @@ public class DocumentController implements Initializable {
         stageRegister.close();
         createTaskStage.show();
     }
-    
-    
+
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         if (btn_login == event.getSource()) {
@@ -90,12 +98,12 @@ public class DocumentController implements Initializable {
         }
     }
 
-    public void validation() {
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Preferences prefs = Preferences.userNodeForPackage(DocumentController.class);
+
+        et_username.setText(prefs.get("username", "Introduce el nombre de "));
+        et_password.setText(prefs.get("password","123"));
 
         Platform.runLater(new Runnable() {
             @Override
